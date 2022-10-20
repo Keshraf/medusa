@@ -2238,6 +2238,7 @@ class CartService extends TransactionBaseService {
       (cart.items || []).map(async (item) => {
         const tax_lines = lineItemsTaxLinesMap.get(item.id)
         const itemTotals = await totalsService.getLineItemTotals(item, cart, {
+          include_tax,
           tax_lines,
           calculation_context: calculationContext,
         })
@@ -2253,6 +2254,7 @@ class CartService extends TransactionBaseService {
           shippingMethod,
           cart,
           {
+            include_tax,
             tax_lines,
             calculation_context: calculationContext,
           }
